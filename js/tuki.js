@@ -40,7 +40,7 @@ var param = function(name)
 }
 
 var putvideo = function(id){
-    $('<iframe width="560" height="315" src="http://www.youtube.com/embed/"' + id + '" frameborder="0" allowfullscreen></iframe>').appendTo('#video');
+    $('<iframe width="560" height="315" src="http://www.youtube.com/embed/' + id + '" frameborder="0" allowfullscreen></iframe>').appendTo('#video');
 }
 
 $(document).ready(function() {  
