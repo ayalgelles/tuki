@@ -1,0 +1,89 @@
+from django.utils import simplejson #json library
+from django import template
+import urllib
+import random
+import string
+
+register = template.Library()
+
+def parse(v):
+    try:
+        return simplejson.loads(v)
+    except:
+        return None
+
+register.filter(parse)
+
+def get(v, k):
+    if v.has_key(k):
+        return v[k]
+    return ""
+
+register.filter(get)
+
+def istag(v, k):
+    return v["tags"].has_key(k)
+
+register.filter(istag)
+
+def take(v, t):
+    return v[:t]
+
+register.filter(take)
+
+def fltrlst(lst, f):
+    def fltr(x): 
+        obj = simplejson.loads(x)
+        return obj.has_key('tags') and type(obj["tags"]).__name__ == 'dict' and obj["tags"].has_key(f)
+    return filter(fltr, lst)
+
+register.filter(fltrlst)
+
+def urlenc(u):
+    return urllib.quote(u.encode("utf-8"))
+
+register.filter(urlenc)
+
+
+def is_yt_id(u):
+   return len(u) == 11
+
+register.filter(is_yt_id)
+
+def is_unruly(u):
+   return u.find('wildfire') == 0
+
+register.filter(is_unruly)
+
+
+def randy(y):
+   return ''.join(random.choice(string.ascii_lowercase + string.digits) for x in range(11))
+
+register.filter(randy)
+
+class VerbatimNode(template.Node):
+
+    def __init__(self, text):
+        self.text = text
+    
+    def render(self, context):
+        return self.text
+
+def verbatim(parser, token):
+    text = []
+    while 1:
+        token = parser.tokens.pop(0)
+        if token.contents == 'endverbatim':
+            break
+        if token.token_type == template.TOKEN_VAR:
+            text.append('{{')
+        elif token.token_type == template.TOKEN_BLOCK:
+            text.append('{%')
+        text.append(token.contents)
+        if token.token_type == template.TOKEN_VAR:
+            text.append('}}')
+        elif token.token_type == template.TOKEN_BLOCK:
+            text.append('%}')
+    return VerbatimNode(''.join(text))
+
+register.tag(verbatim)
