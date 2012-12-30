@@ -33,6 +33,10 @@ overflow-y: scroll;
 	background: grey;
 	margin-bottom: 19px;
 }
+<<<<<<< HEAD
+#chatwindow{min-height: 600px;}
+
+=======
 #title{
 	font-family: helvetica;
 	font-size: 20px;
@@ -49,6 +53,7 @@ overflow-y: scroll;
 	font-family: helvetica;
 	margin-top: 10px;
 }
+>>>>>>> eyal-tuki/tuki-hack
 #nameInput {
   
 }

@@ -50,6 +50,25 @@ var putvideo = function(id) {
   };
 
 var fetchVidInfo = function(vidid) {
+    var api_url = '//gdata.youtube.com/feeds/api/videos/' + vidid + '?v=2&alt=json&callback=?';
+<<<<<<< HEAD
+    $.ajax({
+      url: api_url,
+      cache: false,
+      dataType: 'json',
+      success: function(data) {
+        vidbox.picurl = data.entry.media$group.media$thumbnail[1].url || '';
+        vidbox.title = data.entry.title.$t || '';
+        vidbox.desc = data.entry.media$group.media$description.$t || '';
+        defvid.resolve(vidbox);
+      }
+    });
+  };
+
+$(document).ready(function() {
+  var rid = param("rid");
+  putvideo(rid);
+=======
                 $.ajax({
                         url: api_url,
                         cache: false,
@@ -69,9 +88,9 @@ var fetchVidInfo = function(vidid) {
 				                        }
 								});
                                 //vidbox.desc = data.entry.media$group.media$description.$t || '';
-      }
-    });
-  };
+                        }
+				});
+};
 
 var numberWithCommas = function(x) {
     x = x.toString();
@@ -81,8 +100,9 @@ var numberWithCommas = function(x) {
     return x;
 }
 
-$(document).ready(function() {
-  var rid = param("rid");
-  putvideo(rid);
+$(document).ready(function() {  
+    var rid = param("rid");
+    putvideo(rid);
 	fetchVidInfo(rid);
+>>>>>>> eyal-tuki/tuki-hack
 });
