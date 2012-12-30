@@ -1,3 +1,6 @@
+body {
+
+}
 input {
   font-size: 24px;
 }
@@ -25,10 +28,18 @@ position: absolute;
 right: 0px;
 }
 
+#chatroomheadr{
+	height: 65px;
+	background: grey;
+	margin-bottom: 19px;
+}
+
+
+
 #nameInput {
-  /*width: 25%;*/
+  
 }
 
 #messageInput {
-  /*width: 70%;*/
+  
 }​

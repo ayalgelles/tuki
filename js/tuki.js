@@ -40,8 +40,23 @@ var param = function(name)
 }
 
 var putvideo = function(id){
-    $('<iframe width="560" height="315" src="http://www.youtube.com/embed/' + id + '" frameborder="0" allowfullscreen></iframe>').appendTo('#video');
+    $('<iframe width="560" height="315" src="http://www.youtube.com/embed/' + id + '" frameborder="0" allowfullscreen></iframe>').appendTo('#embedvideo');
 }
+
+var fetchVidInfo = function(vidid) {
+    var api_url = '//gdata.youtube.com/feeds/api/videos/' + vidid + '?v=2&alt=json&callback=?';
+                $.ajax({
+                        url: api_url,
+                        cache: false,
+                        dataType: 'json',
+                        success: function(data) {
+                                vidbox.picurl = data.entry.media$group.media$thumbnail[1].url || '';
+                                vidbox.title = data.entry.title.$t || '';
+                                vidbox.desc = data.entry.media$group.media$description.$t || '';
+                                defvid.resolve(vidbox);
+                        }
+				});
+};
 
 $(document).ready(function() {  
     var rid = param("rid");

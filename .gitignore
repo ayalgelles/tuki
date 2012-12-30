@@ -1,2 +1,5 @@
 
 .DS_Store
+
+/filters/__init__.pyc
+/filters/myfilters.pyc

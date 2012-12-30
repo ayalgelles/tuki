@@ -49,21 +49,43 @@
       }(document, /*debug*/ false));
     </script>
 
-    {% verbatim %}
-    <div ng-app ng-controller="chatController">
-      <div id="messagesDiv" class="span4">
-	<div ng-repeat="message in messages">
-	  <em>{{message.name}}: {{message.text}}</em>
+    
+
+	<!--  Chat room html    -->
+	<div id="chatroommain" class="container-fluid">
+		<div id="chatroomheadr" class="row-fluid">
+			<div id="participants" class="span9"></div>
+			<div id="inviteparticipantsbutton"class="span3"></div>
+		</div>
+		<div id="chatroomcontent" class="container-fluid">
+			<div id="" class="row-fluid">
+				<div id="videowindow" class="span9">
+					<div id="embedvideo"></div>
+					<div id="title"></div>
+					<div id="authorthumb"></div>
+					<div id="authorname"></div>
+					<div id="views"></div>
+				</div>
+				<div id="chatwindow" class="span3">
+					{% verbatim %}
+				    <div ng-app ng-controller="chatController">
+				      <div id="messagesDiv" class="span4">
+						<div ng-repeat="message in messages">
+					  		<em>{{message.name}}: {{message.text}}</em>
+						</div>
+				      </div>
+				      <form ng-submit="addMessage()">
+				      	<input id='nameInput' type='text' placeholder='Name' ng-model="name"/>
+				      	<input id='messageInput' type='text' placeholder='Message' ng-model="text"/>
+				      	<input type="submit" id="submit" value="Send"/>
+				      </form>
+				    </div>
+					{% endverbatim %}
+				</div>
+			</div>
+		</div>
 	</div>
-      </div>
-      <form ng-submit="addMessage()">
-      	<input id='nameInput' type='text' placeholder='Name' ng-model="name"/>
-      	<input id='messageInput' type='text' placeholder='Message' ng-model="text"/>
-      	<input type="submit" id="submit" value="Send"/>
-      </form>
-    </div>
-	<div id="video"></div>
-    {% endverbatim %}
+    
     <!-- <div class="downloadalert">
 	 <div class="closedownloadbaroverlay">×</div>
 	 <strong>Get the right videos for you - handpicked, everyday!</strong>
