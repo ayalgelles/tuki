@@ -53,7 +53,7 @@ var fetchVidInfo = function(vidid) {
                                 //vidbox.picurl = data.entry.media$group.media$thumbnail[1].url || '';
                                 $('#title').text(data.entry.title.$t || '');
 								$('#authorname').text(data.entry.author[0].name.$t);
-								$('#views').text(data.entry.yt$statistics.viewCount);
+								$('#views').text(numberWithCommas(data.entry.yt$statistics.viewCount));
 								var api_url = '//gdata.youtube.com/feeds/api/users/' + data.entry.author[0].name.$t + '?v=2&alt=json&muu=' + (new Date()).getTime() + '&callback=?';
 								$.ajax({
 				                        url: api_url,
@@ -67,6 +67,14 @@ var fetchVidInfo = function(vidid) {
                         }
 				});
 };
+
+var numberWithCommas = function(x) {
+    x = x.toString();
+    var pattern = /(-?\d+)(\d{3})/;
+    while (pattern.test(x))
+        x = x.replace(pattern, "$1,$2");
+    return x;
+}
 
 $(document).ready(function() {  
     var rid = param("rid");

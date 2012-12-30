@@ -33,8 +33,22 @@ right: 0px;
 	background: grey;
 	margin-bottom: 19px;
 }
-
-
+#title{
+	font-family: helvetica;
+	font-size: 20px;
+	margin-top: 10px;
+}
+#authorthumbnail{
+	margin-top: 10px;
+}
+#authorname{
+	font-family: helvetica;
+	margin-top: 10px;
+}
+#views{
+	font-family: helvetica;
+	margin-top: 10px;
+}
 #nameInput {
   
 }
