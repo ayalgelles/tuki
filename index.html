@@ -25,44 +25,51 @@
   	    
   		
 
-	<div ng-app ng-controller="chatController">
-			<div id='messagesDiv'>
-				<div ng-repeat="message in messages">
-	  				<em>{{message.name}}: {{message.text}}</em>
-				</div>
-			</div>
-			<form ng-submit="addMessage()">
-			    <input id='nameInput' type='text' placeholder='Name' ng-model="name"/>
-			    <input id='messageInput' type='text' placeholder='Message' ng-model="text"/>
-			    <input type="submit" id="submit" value="Send"/>
-			</form>
-	</div>
-<!-- <div class="downloadalert">
-  <div class="closedownloadbaroverlay">×</div>
-  <strong>Get the right videos for you - handpicked, everyday!</strong>
-  <button type="button" class="mvu_addtochrome">Add to Chrome</button>
-</div> -->
 
-
-<script>
-  window.fbAsyncInit = function() {
-    // init the FB JS SDK
-    FB.init({
-   appId: '468546183182071',
+    <script>
+      window.fbAsyncInit = function() {
+      // init the FB JS SDK
+      FB.init({
+      appId      : '468546183182071',
    status: true,
    cookie: true,
    xfbml: true
- });
- };
+      });
+      // Additional initialization code such as adding Event Listeners goes here
+      };
 
-  (function(d, debug){
-     var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement('script'); js.id = id; js.async = true;
-     js.src = "//connect.facebook.net/en_US/all" + (debug ? "/debug" : "") + ".js";
-     ref.parentNode.insertBefore(js, ref);
-   }(document, false));
-</script>
+      // Load the SDK's source Asynchronously
+      // Note that the debug version is being actively developed and might 
+      // contain some type checks that are overly strict. 
+      // Please report such bugs using the bugs tool.
+      (function(d, debug){
+      var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+      if (d.getElementById(id)) {return;}
+      js = d.createElement('script'); js.id = id; js.async = true;
+      js.src = "//connect.facebook.net/en_US/all" + (debug ? "/debug" : "") + ".js";
+      ref.parentNode.insertBefore(js, ref);
+      }(document, /*debug*/ false));
+    </script>
 
-</body>
+    {% verbatim %}
+    <div ng-app ng-controller="chatController">
+      <div id='messagesDiv'>
+	<div ng-repeat="message in messages">
+	  <em>{{message.name}}: {{message.text}}</em>
+	</div>
+      </div>
+      <form ng-submit="addMessage()">
+	<input id='nameInput' type='text' placeholder='Name' ng-model="name"/>
+	<input id='messageInput' type='text' placeholder='Message' ng-model="text"/>
+	<input type="submit" id="submit" value="Send"/>
+      </form>
+    </div>
+    {% endverbatim %}
+    <!-- <div class="downloadalert">
+	 <div class="closedownloadbaroverlay">×</div>
+	 <strong>Get the right videos for you - handpicked, everyday!</strong>
+	 <button type="button" class="mvu_addtochrome">Add to Chrome</button>
+    </div> -->
+
+  </body>
 </html>

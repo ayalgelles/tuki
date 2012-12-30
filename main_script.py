@@ -11,6 +11,12 @@ from google.appengine.ext.webapp.util import run_wsgi_app
 
 from google.appengine.ext.webapp import template
 
+os.environ['DJANGO_SETTINGS_MODULE'] = 'settings'
+from google.appengine.dist import use_library
+use_library('django', '0.96')
+
+template.register_template_library("filters.myfilters")
+
 class MainPage(webapp.RequestHandler):
     def get(self):
         template_values = {
