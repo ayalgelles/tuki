@@ -14,10 +14,12 @@
     <meta property="og:image" content="" />
     <meta property="og:type" content="website"/>
     <link rel="stylesheet" href="/css/tuki.css?bbv=2012271216"/>
-
-	<script src="/js/tuki.js"></script>
+    <script src="/lib/utils.js"></script>
+    <script src="/lib/jquery.min.js"></script>
+	  <script src="/js/tuki.js"></script>
   </head>
   <body> 
+      <div id="fb-root"></div>
   		<script src="http://static.firebase.com/v0/firebase.js"></script>
   		<script src="http://code.angularjs.org/angular-1.0.0rc5.min.js"></script>
   	    
@@ -42,32 +44,24 @@
 </div> -->
 
 
-<div id="fb-root"></div>
 <script>
   window.fbAsyncInit = function() {
     // init the FB JS SDK
     FB.init({
-      appId      : '468546183182071'
-      status     : true, // check the login status upon init?
-      cookie     : true, // set sessions cookies to allow your server to access the session?
-      xfbml      : true  // parse XFBML tags on this page?
-    });
+   appId: '468546183182071',
+   status: true,
+   cookie: true,
+   xfbml: true
+ });
+ };
 
-    // Additional initialization code such as adding Event Listeners goes here
-
-  };
-
-  // Load the SDK's source Asynchronously
-  // Note that the debug version is being actively developed and might 
-  // contain some type checks that are overly strict. 
-  // Please report such bugs using the bugs tool.
   (function(d, debug){
      var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
      if (d.getElementById(id)) {return;}
      js = d.createElement('script'); js.id = id; js.async = true;
      js.src = "//connect.facebook.net/en_US/all" + (debug ? "/debug" : "") + ".js";
      ref.parentNode.insertBefore(js, ref);
-   }(document, /*debug*/ false));
+   }(document, false));
 </script>
 
 </body>

@@ -19,6 +19,9 @@ handlers:
 - url: /css
   static_dir: css
 
+- url: /lib
+  static_dir: lib
+
 - url: /(.*\.(gif|png|jpg))
   static_files: static/\1
   upload: static/(.*\.(gif|png|jpg))
