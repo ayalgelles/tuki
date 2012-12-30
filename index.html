@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml">
+  <head>
+    <title>Youtube Tuki Chat</title>
+    <link rel="icon" href="/static/favicon.png" sizes="16x16" type="image/png"/>
+    <meta name="description" content=""> 
+    <meta name="keywords" lang="en-us" content=""> 
+    <meta property="og:title" content="Youtube chat"/>
+    <meta property="fb:app_id" content=""/>
+    <meta property="fb:admins" content=""/>
+    <meta property="og:site_name" content=""/>
+    <meta property="og:description" content="" />
+    <meta property="og:url" content="" />
+    <meta property="og:image" content="" />
+    <meta property="og:type" content="website"/>
+    <link rel="stylesheet" href="/css/tuki.css?bbv=2012271216"/>
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js"></script>
+    <script src="/js/ytc.js"></script>
+    <script src="http://static.firebase.com/v0/firebase.js"></script>
+	<script src="http://code.angularjs.org/angular-1.0.0rc5.min.js"></script>
+  </head>
+  <body id="body"> 
+	 <div id="fb-root"></div>
+	<div ng-app ng-controller="chatController">
+			<div id='messagesDiv'>
+			<div ng-repeat="message in messages">
+  				<em>{{message.name}}: {{message.text}}</em>
+			</div>
+			</div>
+			<form ng-submit="addMessage()">
+		    <input id='nameInput' type='text' placeholder='Name' ng-model="name"/>
+		    <input id='messageInput' type='text' placeholder='Message' ng-model="text"/>
+		    <input type="submit" id="submit" value="Send"/>
+		</form>
+	</div>
+<!-- <div class="downloadalert">
+  <div class="closedownloadbaroverlay">×</div>
+  <strong>Get the right videos for you - handpicked, everyday!</strong>
+  <button type="button" class="mvu_addtochrome">Add to Chrome</button>
+</div> -->
+
+
+</body>
+</html>
