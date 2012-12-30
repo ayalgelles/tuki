@@ -18,19 +18,29 @@
     <script src="/lib/jquery.min.js"></script>
     <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet">
     <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js"></script>
+    <script src="http://static.firebase.com/v0/firebase.js"></script>
     <script src="/js/utils.js"></script>
     <script src="/js/fb.js"></script>
     <script src="/js/tuki.js"></script>
   </head>
-  <body> 
+  <body style="display:none"> 
     <div id="fb-root"></div>
-    <script src="http://static.firebase.com/v0/firebase.js"></script>
     <script src="http://code.angularjs.org/angular-1.0.0rc5.min.js"></script>
-    <div class="fbmodal modal hide">
+    <div class="fbmodal modal hide" data-backdrop="static">
       <div class="modal-body"><div class="fbcnt btn btn-info">please connect</div></div>
+    </div>
+    <div class="roomodal modal hide" data-backdrop="static">
+      <div class="modal-body">
+	<div class="roomsbtn btn btn-info">my rooms</div>
+	<div class="newbtn btn btn-info">NEW room</div>
+      </div>
     </div>
     {% verbatim %}
     <div ng-app ng-controller="chatController">
+      online:
+      <div ng-repeat="who in whoz">
+	<span><img src="//graph.facebook.com/{{who.fbid}}/picture" /></span>
+      </div>
       <div id='messagesDiv'>
 	<div ng-repeat="message in messages">
 	  <em><img src="//graph.facebook.com/{{message.fbid}}/picture" />{{message.text}}</em>

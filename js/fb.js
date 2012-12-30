@@ -39,6 +39,7 @@ fblogin = function(cb) {
 
 		 if (response.authResponse) {
 		     whenAllowed();
+		     setstat(response);
 		     return; 
 		 }
 
