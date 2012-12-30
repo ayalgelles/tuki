@@ -4,5 +4,36 @@ runtime: python
 api_version: 1
 
 handlers:
+
+- url: /favicon.png
+  static_files: static/favicon.png
+  upload: static/favicon.png
+
+- url: /favicon.ico
+  static_files: static/favicon.png
+  upload: static/favicon.png
+
+- url: /js
+  static_dir: js
+
+- url: /css
+  static_dir: css
+
+- url: /(.*\.(gif|png|jpg))
+  static_files: static/\1
+  upload: static/(.*\.(gif|png|jpg))
+  expiration: "5d 0h"
+
+- url: /ext-services
+  static_dir: ext-services
+
+- url: /utils
+  static_dir: utils
+
+- url: /cleanup_sessions
+  script: cleanup_sessions.py
+  login: admin
+
 - url: /.*
   script: main_script.py
+  secure: optional
