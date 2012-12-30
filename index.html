@@ -14,6 +14,8 @@
     <meta property="og:image" content="" />
     <meta property="og:type" content="website"/>
     <link rel="stylesheet" href="/css/tuki.css?bbv=2012271216"/>
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet"/>
+    <link href="//netdna.bootstrapcdn.com/font-awesome/2.0/css/font-awesome.css" rel="stylesheet"/>
     <script src="/lib/utils.js"></script>
     <script src="/lib/jquery.min.js"></script>
 	  <script src="/js/tuki.js"></script>
@@ -49,15 +51,15 @@
 
     {% verbatim %}
     <div ng-app ng-controller="chatController">
-      <div id='messagesDiv'>
+      <div id="messagesDiv" class="span4">
 	<div ng-repeat="message in messages">
 	  <em>{{message.name}}: {{message.text}}</em>
 	</div>
       </div>
       <form ng-submit="addMessage()">
-	<input id='nameInput' type='text' placeholder='Name' ng-model="name"/>
-	<input id='messageInput' type='text' placeholder='Message' ng-model="text"/>
-	<input type="submit" id="submit" value="Send"/>
+      	<input id='nameInput' type='text' placeholder='Name' ng-model="name"/>
+      	<input id='messageInput' type='text' placeholder='Message' ng-model="text"/>
+      	<input type="submit" id="submit" value="Send"/>
       </form>
     </div>
 	<div id="video"></div>

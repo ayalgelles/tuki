@@ -15,20 +15,20 @@ em {
 }
 
 #messagesDiv {
-  background-color: white;
-  overflow: auto;
-  height: 230px;
-  width: 95%;
-  padding: 10px;
-  border: 8px solid #424547;
-  margin-bottom: 5px;
-  text-align: left;
+background-color: white;
+overflow: auto;
+padding: 10px;
+border: 1px solid #424547;
+margin: 0px 9px 3px;
+text-align: left;
+position: absolute;
+right: 0px;
 }
 
 #nameInput {
-  width: 25%;
+  /*width: 25%;*/
 }
 
 #messageInput {
-  width: 70%;
+  /*width: 70%;*/
 }​
