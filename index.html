@@ -77,15 +77,15 @@
 					<div id="chatwindow">
 						{% verbatim %}
 					    <div ng-app ng-controller="chatController">
-					      <div id="messagesDiv" class="span4">
+					      <div id="messagesDiv" class="span4 messagesDiv">
 							<div ng-repeat="message in messages">
 						  		<em>{{message.name}}: {{message.text}}</em>
 							</div>
 					      </div>
 					      <form ng-submit="addMessage()">
-					      	<input id='nameInput' type='text' placeholder='Name' ng-model="name"/>
-					      	<input id='messageInput' type='text' placeholder='Message' ng-model="text"/>
-					      	<input type="submit" id="submit" value="Send"/>
+					      	<!-- <input id="nameInput" type="text" placeholder="Name" ng-model="name"/> -->
+					      	<input id="messageInput"  placeholder="Message" ng-model="text"/>
+                  <input type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;"/>
 					      </form>
 					    </div>
 						{% endverbatim %}
