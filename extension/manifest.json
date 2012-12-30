@@ -1,5 +1,5 @@
 {
-    "version": "2.11227.1747",
+    "version": "3.0",
     "manifest_version": 2,
     "description": "YouTube Chat",
     "homepage_url": "http://www.moovu.com",
@@ -27,7 +27,7 @@
         }
     ],
     "content_security_policy": "script-src 'self' https://vimeo.com https://gdata.youtube.com https://www.moovu.com https://5.wemoovu.appspot.com https://ssl.google-analytics.com; object-src 'self'",
-    "name": "YouTube Chats",
+    "name": "YouTube Chat",
     "permissions": [
         "contextMenus",
         "cookies",
