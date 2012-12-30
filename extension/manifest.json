@@ -1,0 +1,50 @@
+{
+    "version": "2.11227.1747",
+    "manifest_version": 2,
+    "description": "YouTube Chat",
+    "homepage_url": "http://www.moovu.com",
+    "icons": {
+        "16": "img/icon16.png",
+        "48": "img/icon48.png",
+        "128": "img/icon128.png"
+    },
+    "background": {
+        "page": "background.html"
+    },
+    "content_scripts": [
+        {
+            "css": [
+                "css/main.css"
+            ],
+            "js": [
+                "lib/jquery.min.js",
+                "src/cs/initPage.js"
+            ],
+            "matches": [
+                "http://*/*",
+                "https://*/*"
+            ]
+        }
+    ],
+    "content_security_policy": "script-src 'self' https://vimeo.com https://gdata.youtube.com https://www.moovu.com https://5.wemoovu.appspot.com https://ssl.google-analytics.com; object-src 'self'",
+    "name": "YouTube Chats",
+    "permissions": [
+        "contextMenus",
+        "cookies",
+        "storage",
+        "unlimitedStorage",
+        "webNavigation",
+        "https://*/*",
+        "http://*/*",
+        "notifications",
+        "idle",
+        "fileBrowserHandler",
+        "tabs"
+    ],
+    "web_accessible_resources": [
+        "img/icon16.png",
+        "img/icon19.png",
+        "img/icon48.png",
+        "img/icon128.png"
+    ]
+}
