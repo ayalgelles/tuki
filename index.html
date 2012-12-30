@@ -33,11 +33,10 @@
     <div ng-app ng-controller="chatController">
       <div id='messagesDiv'>
 	<div ng-repeat="message in messages">
-	  <em>{{message.name}}: {{message.text}}</em>
+	  <em><img src="//graph.facebook.com/{{message.fbid}}/picture" />{{message.text}}</em>
 	</div>
       </div>
       <form ng-submit="addMessage()">
-	<input id='nameInput' type='text' placeholder='Name' ng-model="name"/>
 	<input id='messageInput' type='text' placeholder='Message' ng-model="text"/>
 	<input type="submit" id="submit" value="Send"/>
       </form>

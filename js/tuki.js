@@ -1,6 +1,8 @@
 RoomReady = $.Deferred();
 
 window.room = param('rid');
+window.vid = param('vid');
+
 if (window.room) {
     RoomReady.resolve();
 }
@@ -32,7 +34,8 @@ FBStatus.done(function(stat) {
 function chatController($scope, $defer) {
     $.when(FBLoggedIn, RoomReady).done(function(){
 	var x = new Firebase('http://ayal.firebaseio.com/' + FB.getUserID());
-	x.child(window.room).set({date: (new Date()).getTime()});
+	roomref = x.child(window.room);
+	roomref.set({date: (new Date()).getTime()});
 
 	$scope.firebaseRef = new Firebase('http://ayal.firebaseio.com/' + window.room);
 	$scope.name = '';
@@ -40,16 +43,26 @@ function chatController($scope, $defer) {
 	$scope.messages = [];
 
 	$scope.addMessage = function() {
-	    $scope.firebaseRef.push({name:$scope.name, text:$scope.text});
+	    $scope.firebaseRef.push({fbid: FB.getUserID(), name:window.name, text:$scope.text});
 	    $scope.text = '';
 	};
 
+	if (window.vid) {
+	    $scope.firebaseRef.push({fbid: FB.getUserID(), name: window.name, vid:window.vid, text: '[[' + window.vid + ']]', date: (new Date()).getTime()});
+	}
+
 	$scope.firebaseRef.on('child_added', function(snapshot){
-				  var message = snapshot.val();
-				  $defer(function(){
-					     $scope.messages.push({name:message.name, text:message.text});
-					 }, 0);
-			      });
+	    var message = snapshot.val();
+	    if (message.vid) {
+		clearTimeout(window.debounce);
+		window.debounce = setTimeout(function(){
+		    putvideo(message.vid);
+		},1000);
+	    }
+	    $defer(function(){
+		$scope.messages.push({fbid: message.fbid, name:message.name, text:message.text});
+	    }, 0);
+	});
 
     });
 }
@@ -60,6 +73,8 @@ var putvideo = function(id){
 };
 
 $(document).ready(function() {  
-    var rid = param("rid");
-    putvideo(rid);
+    if (window.vid) {
+	putvideo(window.vid);
+	putvideo = $.noop;
+    }
 });

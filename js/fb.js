@@ -5,7 +5,10 @@ context = {appId: '468546183182071'};
 window.setstat = function(resp) {
     FBStatus.resolve(resp.status);
     if (resp.status === 'connected') {
-	FBLoggedIn.resolve(resp);
+	FB.api('/me', function(resp){
+		   window.name = resp.name;
+		   FBLoggedIn.resolve(resp);
+	       });
     }
     else {
 	
