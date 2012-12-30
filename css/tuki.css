@@ -27,13 +27,12 @@ text-align: left;
 position: absolute;
 right: 0px;
 }
-
+#maincontainer{position:relative;margin: 60px 10px;}
 #chatroomheadr{
 	height: 65px;
 	background: grey;
 	margin-bottom: 19px;
 }
-
 
 
 #nameInput {
