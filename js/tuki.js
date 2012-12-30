@@ -41,7 +41,7 @@ var param = function(name) {
               var regexS = "[\\?&]" + name + "=([^&#]*)";
               var regex = new RegExp(regexS);
               var results = regex.exec(window.location.search);
-              if(results == null) return "";
+              if(results === null) return "";
               else return decodeURIComponent(results[1].replace(/\+/g, " "));
        };
 
@@ -50,14 +50,12 @@ var putvideo = function(id) {
        };
 
 var fetchVidInfo = function(vidid) {
-           var api_url = '//gdata.youtube.com/feeds/api/videos/' + vidid + '?v=2&alt=json&callback=?';
-
+              var api_url = '//gdata.youtube.com/feeds/api/videos/' + vidid + '?v=2&alt=json&callback=?';
               $.ajax({
                      url: api_url,
                      cache: false,
                      dataType: 'json',
                      success: function(data) {
-                            //vidbox.picurl = data.entry.media$group.media$thumbnail[1].url || '';
                             $('#title').text(data.entry.title.$t || '');
                             $('#authorname').text(data.entry.author[0].name.$t);
                             $('#views').text(numberWithCommas(data.entry.yt$statistics.viewCount));
@@ -70,7 +68,6 @@ var fetchVidInfo = function(vidid) {
                                           $('#authorthumbnail').attr('src', data.entry.media$thumbnail.url);
                                    }
                             });
-                            //vidbox.desc = data.entry.media$group.media$description.$t || '';
                      }
               });
        };
@@ -87,4 +84,11 @@ $(document).ready(function() {
        var rid = param("rid");
        putvideo(rid);
        fetchVidInfo(rid);
+       // $('#messageInput').keyup(function(ev) {
+       //        if(ev.which === 13) {
+       //               $('form').submit(function() {
+                           
+       //               });
+       //        }
+       // });
 });
