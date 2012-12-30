@@ -26,4 +26,3 @@ function chatController($scope, $defer) {
   });
 }
 chatController.$inject = ['$scope','$defer'];
-​
