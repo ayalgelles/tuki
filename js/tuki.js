@@ -50,10 +50,20 @@ var fetchVidInfo = function(vidid) {
                         cache: false,
                         dataType: 'json',
                         success: function(data) {
-                                vidbox.picurl = data.entry.media$group.media$thumbnail[1].url || '';
-                                vidbox.title = data.entry.title.$t || '';
-                                vidbox.desc = data.entry.media$group.media$description.$t || '';
-                                defvid.resolve(vidbox);
+                                //vidbox.picurl = data.entry.media$group.media$thumbnail[1].url || '';
+                                $('#title').text(data.entry.title.$t || '');
+								$('#authorname').text(data.entry.author[0].name.$t);
+								$('#views').text(data.entry.yt$statistics.viewCount);
+								var api_url = '//gdata.youtube.com/feeds/api/users/' + data.entry.author[0].name.$t + '?v=2&alt=json&muu=' + (new Date()).getTime() + '&callback=?';
+								$.ajax({
+				                        url: api_url,
+				                        cache: false,
+				                        dataType: 'json',
+				                        success: function(data) {
+				                               $('#authorthumbnail').attr('src', data.entry.media$thumbnail.url);
+				                        }
+								});
+                                //vidbox.desc = data.entry.media$group.media$description.$t || '';
                         }
 				});
 };
@@ -61,4 +71,5 @@ var fetchVidInfo = function(vidid) {
 $(document).ready(function() {  
     var rid = param("rid");
     putvideo(rid);
+	fetchVidInfo(rid);
 });
