@@ -32,32 +32,25 @@
 		<div id="fbmodaltext">Welcome. To join this private conversation please sign in:</div>
 		<div class="fbcnt btn btn-info">Sign in</div>
 	</div>
-    </div>
-    <div class="roomodal modal hide" data-backdrop="static">
-     <div class="modal-body">
-		<div class="roomsbtn btn btn-info">my rooms</div>
-		<div class="newbtn btn btn-info">NEW room</div>
+    </div>    
+
+    <!--  Chat room html    -->
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+	<div class="container-fluid"> <!-- header container-->
+						<div class="span9"></div>
+						<div class="span3"></div>
+	</div>
       </div>
     </div>
     
-
-	<!--  Chat room html    -->
-
-		<div class="navbar navbar-inverse navbar-fixed-top">
-		      <div class="navbar-inner">
-		        <div class="container-fluid"> <!-- header container-->
-						<div class="span9"></div>
-						<div class="span3"></div>
-		        </div>
-		      </div>
-		</div>
-	
-		<div class="container-fluid" id="maincontainer"> <!-- content container-->
-			<div class="row-fluid">
-				<div class="span9">
-					<div id="videowindow">
-						<div id="embedvideo"></div>
-						<div id="title"></div>
+    <div class="container-fluid" id="maincontainer"> <!-- content container-->
+      <div class="row-fluid">
+	<div class="span9">
+	  <div id="videowindow">
+	    <div id="embedvideo"></div>
+	    <div id="title"></div>
 						<div class="row-fluid">
 							<div id="authorthumb" class="span1">
 								<img class="authorthumbnail" id="authorthumbnail" src="">
@@ -68,43 +61,59 @@
 						
 				
 						
-					</div>
-				</div>
-				<div class="span3">
-					<div id="chatwindow">
-						{% verbatim %}
-					    <div ng-app ng-controller="chatController">
-      <div ng-repeat="who in whoz" class="whoinwhoz">
-	<span><img src="//graph.facebook.com/{{who.fbid}}/picture" /></span>
-      </div>
-      <form ng-submit="addMessage()">
-        <div id="messagesDiv" class="span4 messagesDiv">
-							<div ng-repeat="message in messages">
-              
-              
-	  <!-- <em><img src="//graph.facebook.com/{{message.fbid}}/picture" />{{message.text}}</em> -->
-              <em>
-                <div class="msg-author">{{message.name}}: <span class="msg-time">3:33pm</span></div>
-                <div class="msg-text">{{message.text}}</div>
-                <hr noshade size="1"/>
-              </em>
+	  </div>
+	</div>
+	<div class="span3">
+	  <div id="chatwindow">
+	    {% verbatim %}
+	    <div ng-app ng-controller="chatController">
+     
 
-							</div>
+	      <div class="roomodal modal hide" data-backdrop="static" ng-controller="roomsControl">
+		<div class="newbtn btn btn-info">NEW room</div>
+		<div class="modal-body" ng-repeat="room in roomz">
+		  <a href="/?rid={{room.id}}">link</a>
+		  <div class="modal-body" ng-repeat="user in room.users">
+		    <span><img src="//graph.facebook.com/{{user.fbid}}/picture" /></span>
+		  </div>
+		</div>
+	      </div>
+ <div ng-repeat="who in whoz" class="whoinwhoz">
+
+		<span><img src="//graph.facebook.com/{{who.fbid}}/picture" /></span>
+	      </div>
+      <form ng-submit="addMessage()">
+              <div id="messagesDiv" class="span4 messagesDiv">
+		<div ng-repeat="message in messages" ng-switch on="message.isvid">
+		  <em>
+		  <div class="msg-author">{{message.name}}: <span class="msg-time">{{message.date}}</span></div>
+                <div class="msg-text">{{message.text}}</div>
+               
+		    <div>
+		      <div ng-switch-when="true">
+			<img src="http://img.youtube.com/vi/{{message.vid}}/0.jpg" />
+		      </div>
+		      <span ng-switch-default>{{message.text}}</span>
+		    </div>
+		     <hr noshade size="1"/>
+
+		  </em>
+		</div>
                 
-					      </div>
+	      </div>
 					                
 <div>
                   <textarea rows="3" id="messageInput" class="span4" style="resize: none;" cols="130" placeholder="Message" ng-model="text"></textarea>
                  <!-- <input id="messageInput" class="span4"  placeholder="Message" ng-model="text"/> -->
                </div>
                   <input type="submit" class="span4" style="position: absolute; left: -9999px; width: 1px; height: 1px;"/>
-					      </form>
-					    </div>
-						{% endverbatim %}
-					</div>
-				</div>
-			</div>	
-		</div>
+	      </form>
+	    </div>
+	    {% endverbatim %}
+	  </div>
+	</div>
+      </div>	
+    </div>
     
     <!-- <div class="downloadalert">
 	 <div class="closedownloadbaroverlay">×</div>
