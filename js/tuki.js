@@ -91,12 +91,9 @@ function chatController($scope, $defer) {
                             room: window.room
                      });
               }
-
               $scope.name = '';
               $scope.text = '';
               $scope.messages = [];
-
-
               $scope.addMessage = function() {
                      $scope.firebaseRef.push({
                             fbid: FB.getUserID(),
