@@ -85,25 +85,26 @@
       <form ng-submit="addMessage()">
               <div id="messagesDiv" class="span4 messagesDiv">
 		<div ng-repeat="message in messages" ng-switch on="message.isvid">
+      <hr noshade size="1"/>   
 		  <em>
 		  <div class="msg-author">{{message.name}}: <span class="msg-time">{{message.date}}</span></div>
-                <div class="msg-text">{{message.text}}</div>
+                <div class="msg-text"><span ng-switch-default>{{message.text}}</span></div>
                
 		    <div>
 		      <div ng-switch-when="true">
 			<img src="http://img.youtube.com/vi/{{message.vid}}/0.jpg" />
 		      </div>
-		      <span ng-switch-default>{{message.text}}</span>
+		      
 		    </div>
-			<img src="http://img.youtube.com/vi/{{message.vid}}/0.jpg" />
+		            
 		      </div>
 		      <span ng-switch-default>{{message.text}}</span>
 		    </div>
-		     <hr noshade size="1"/>
 
 		  </em>
+
 		</div>
-                
+      
 	      </div>
 					                
 <div>
