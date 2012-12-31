@@ -121,10 +121,6 @@ function chatController($scope, $defer) {
                             window.debounce = setTimeout(function() {
                                    putvideo(message.vid);
                             }, 1000);
-                            setTimeout(function() {
-                                   var elem = document.getElementById('messagesDiv');
-                                   elem.scrollTop = elem.scrollHeight;
-                            }, 0);
                      }
                      $defer(function() {
                             $scope.messages.push({
@@ -132,6 +128,13 @@ function chatController($scope, $defer) {
                                    name: message.name,
                                    text: message.text
                             });
+                            setTimeout(function() {
+                                   var elem = document.getElementById('messagesDiv');
+                                   if(elem.scrollHeight) {
+                                          elem.scrollTop = elem.scrollHeight;
+                                   }
+
+                            }, 0);
                      }, 0);
               });
 
@@ -177,6 +180,6 @@ $(document).ready(function() {
        if(window.vid) {
               putvideo(window.vid);
               putvideo = $.noop;
-			  fetchVidInfo(window.vid);
+              fetchVidInfo(window.vid);
        }
 });
