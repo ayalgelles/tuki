@@ -120,6 +120,7 @@ function chatController($scope, $defer) {
                             clearTimeout(window.debounce);
                             window.debounce = setTimeout(function() {
                                    putvideo(message.vid);
+								   fetchVidInfo(message.vid);
                             }, 1000);
                      }
                      $defer(function() {
