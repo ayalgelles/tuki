@@ -24,10 +24,10 @@ border: 1px solid #424547;
 text-align: left;
 width: 100%;
 margin: 4px auto;
-height: 500px;
 overflow-y: scroll;
 
 }
+#embedvideo{width:100%;}
 #maincontainer{position:relative;margin: 60px 10px;}
 #chatroomheadr{
 	height: 65px;
@@ -44,11 +44,15 @@ overflow-y: scroll;
 }
 #authorname{
 	font-family: helvetica;
-	margin-top: 10px;
+	margin-top: 14px;
+	font-size: 17px;
+	margin-left: 5px;
 }
 #views{
 	font-family: helvetica;
-	margin-top: 10px;
+	margin-top: 0px;
+	font-size: 20px;
+	margin-left: 5px;
 }
 #nameInput {
   
@@ -61,4 +65,49 @@ height: 55px;
 padding: 10px;
 border: 1px solid #424547;
 text-align: left;
+white-space: pre-wrap;
 }
+.whoinwhoz {
+	position:relative;
+	float:left;
+	height:50px;
+	width:auto;
+
+}
+.modal-header{
+	text-align: center;
+	background: #1A1A1A;
+	color: white;
+	font-family: helvetica;
+	font-size: 18px;
+	font-weight: bold;
+}
+.modal-body{
+	padding:0px !important;
+	height:250px;
+}
+.fbmodal{
+	top: 50% !important;
+	margin-top: -126px;
+}
+.roomodal{
+	top: 50% !important;
+	margin-top: -126px;
+}
+#fbmodaltext{
+	font-size: 16px;
+	font-family: helvetica;
+	text-align: center;
+	margin-top: 60px;
+}
+.fbcnt{
+	margin-left: 210px;
+	margin-top: 39px;
+	padding:8px 47px !important;
+}
+.msg-author{
+	font-size: 12px;
+	color:magenta;
+}
+.msg-time{text-align: right;float: right;}
+.msg-text{word-wrap: break-word;}

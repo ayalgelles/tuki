@@ -27,7 +27,11 @@
     <div id="fb-root"></div>
     <script src="http://code.angularjs.org/angular-1.0.0rc5.min.js"></script>
     <div class="fbmodal modal hide" data-backdrop="static">
-      <div class="modal-body"><div class="fbcnt btn btn-info">please connect</div></div>
+	<div class="modal-header">Identify yourself</div>
+      <div class="modal-body">
+		<div id="fbmodaltext">Welcome. To join this private conversation please sign in:</div>
+		<div class="fbcnt btn btn-info">Sign in</div>
+	</div>
     </div>    
 
     <!--  Chat room html    -->
@@ -35,8 +39,8 @@
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
 	<div class="container-fluid"> <!-- header container-->
-	  <div id="participants" class="span9"></div>
-	  <div id="inviteparticipantsbutton"class="span3"></div>
+						<div class="span9"></div>
+						<div class="span3"></div>
 	</div>
       </div>
     </div>
@@ -47,17 +51,23 @@
 	  <div id="videowindow">
 	    <div id="embedvideo"></div>
 	    <div id="title"></div>
-	    <div id="authorthumb">
-	      <img class="authorthumbnail" id="authorthumbnail" src="">
-	    </div>
-	    <div id="authorname"></div>
-	    <div id="views"></div>
+						<div class="row-fluid">
+							<div id="authorthumb" class="span1">
+								<img class="authorthumbnail" id="authorthumbnail" src="">
+							</div>
+							<div id="authorname" class="span8"></div>
+							<div id="views" class="span8"></div>
+						</div>
+						
+				
+						
 	  </div>
 	</div>
 	<div class="span3">
 	  <div id="chatwindow">
 	    {% verbatim %}
 	    <div ng-app ng-controller="chatController">
+     
 
 	      <div class="roomodal modal hide" data-backdrop="static" ng-controller="roomsControl">
 		<div class="newbtn btn btn-info">NEW room</div>
@@ -68,29 +78,39 @@
 		  </div>
 		</div>
 	      </div>
+ <div ng-repeat="who in whoz" class="whoinwhoz">
 
-	      online:
-	      <div ng-repeat="who in whoz">
 		<span><img src="//graph.facebook.com/{{who.fbid}}/picture" /></span>
 	      </div>
+      <form ng-submit="addMessage()">
               <div id="messagesDiv" class="span4 messagesDiv">
 		<div ng-repeat="message in messages" ng-switch on="message.isvid">
-		  <em><img src="//graph.facebook.com/{{message.fbid}}/picture" />
-		    <div>{{message.date}}</div>
-		    <div>{{message.name}}</div>
+		  <em>
+		  <div class="msg-author">{{message.name}}: <span class="msg-time">{{message.date}}</span></div>
+                <div class="msg-text">{{message.text}}</div>
+               
 		    <div>
-		      <div ng-switch-when="what">
+		      <div ng-switch-when="true">
 			<img src="http://img.youtube.com/vi/{{message.vid}}/0.jpg" />
 		      </div>
 		      <span ng-switch-default>{{message.text}}</span>
 		    </div>
+			<img src="http://img.youtube.com/vi/{{message.vid}}/0.jpg" />
+		      </div>
+		      <span ng-switch-default>{{message.text}}</span>
+		    </div>
+		     <hr noshade size="1"/>
+
 		  </em>
 		</div>
+                
 	      </div>
-	      <form ng-submit="addMessage()">
-		<input id="messageInput"  placeholder="Message" ng-model="text"/>
-                <!-- <textarea rows="3" id="messageInput" placeholder="Message" ng-model="text"></textarea> -->
-                <input type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;"/>
+					                
+<div>
+                  <textarea rows="3" id="messageInput" class="span4" style="resize: none;" cols="130" placeholder="Message" ng-model="text"></textarea>
+                 <!-- <input id="messageInput" class="span4"  placeholder="Message" ng-model="text"/> -->
+               </div>
+                  <input type="submit" class="span4" style="position: absolute; left: -9999px; width: 1px; height: 1px;"/>
 	      </form>
 	    </div>
 	    {% endverbatim %}

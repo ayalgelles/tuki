@@ -83,7 +83,7 @@ BBoneGAnalytics = function() {
                 selfthis.setCustomVarSession(ctx);
                 // _gaq.push(['_trackPageview', '/extension/setSession/' + ctx.paircode]);
                 if(!BBEXT.globalObj.firstRun) {
-                        BBEXT.install.openplaylistfirstime(ctx);
+                        // BBEXT.install.openplaylistfirstime(ctx);
                 } else {
                         BBEXT.core.setversion(ctx);
                 }
@@ -1400,7 +1400,7 @@ Bg_services = function() {
         };
         selfservice.openchatab = function(req, sender, cb) {
                 chrome.tabs.create({
-                        url: localStorage.chatserver + '/?rid='+req.vid
+                        url: localStorage.chatserver + '/?vid='+req.vid
                 }, function(newtab) {cb('OK',newtab);});
         };
         selfservice.streamMessaging = function(ctx) {
