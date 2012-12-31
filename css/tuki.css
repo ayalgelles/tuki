@@ -62,3 +62,6 @@ padding: 10px;
 border: 1px solid #424547;
 text-align: left;
 }
+#inviteparticipantsbutton{
+	float:right;
+}
