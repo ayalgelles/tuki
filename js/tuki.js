@@ -95,6 +95,7 @@ function chatController($scope, $defer) {
               $scope.text = '';
               $scope.messages = [];
               $scope.addMessage = function() {
+                     if($scope.text === '') return false;
                      $scope.firebaseRef.push({
                             fbid: FB.getUserID(),
                             name: window.name,

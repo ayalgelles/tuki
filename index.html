@@ -65,15 +65,20 @@
 					<div id="chatwindow">
 						{% verbatim %}
 					    <div ng-app ng-controller="chatController">
-      online:
-      <div ng-repeat="who in whoz">
+     <div class="textspan"> online:</div>
+      <div ng-repeat="who in whoz" class="whoinwhoz">
 	<span><img src="//graph.facebook.com/{{who.fbid}}/picture" /></span>
       </div>
         <div id="messagesDiv" class="span4 messagesDiv">
 							<div ng-repeat="message in messages">
               
               
-	  <em><img src="//graph.facebook.com/{{message.fbid}}/picture" />{{message.text}}</em>
+	  <!-- <em><img src="//graph.facebook.com/{{message.fbid}}/picture" />{{message.text}}</em> -->
+              <em>
+                <div class="msg-author">{{message.name}}: <span class="msg-time">3:33pm</span></div>
+                <div class="msg-text">{{message.text}}</div>
+                <hr noshade size="1"/>
+              </em>
 							</div>
 					      </div>
 					      <form ng-submit="addMessage()">
