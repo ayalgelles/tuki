@@ -180,5 +180,6 @@ $(document).ready(function() {
        if(window.vid) {
               putvideo(window.vid);
               putvideo = $.noop;
+			  fetchVidInfo(window.vid);
        }
 });
