@@ -126,7 +126,6 @@ function chatController($scope, $defer) {
                             }, 1000);
                             setTimeout(function() {
                                    var elem = document.getElementById('messagesDiv');
-                                   console.log(elem.scrollHeight);
                                    elem.scrollTop = elem.scrollHeight;
                             }, 0);
                      }
