@@ -26,3 +26,13 @@ function GUID () {
             S4() + S4() + S4()
         );
 }
+
+window.ddmmyyyy = function(del, d) {
+    del = del || '-';
+    d = d || new Date();
+    var curr_date = d.getDate();
+    var curr_month = d.getMonth() + 1;
+    var curr_year = d.getFullYear();
+
+    return curr_date + del + curr_month + del + curr_year;
+};
