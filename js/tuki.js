@@ -121,7 +121,7 @@ function chatController($scope, $defer) {
                             clearTimeout(window.debounce);
                             window.debounce = setTimeout(function() {
                                    putvideo(message.vid);
-								   fetchVidInfo(message.vid);
+                                   fetchVidInfo(message.vid);
                             }, 1000);
                      }
                      $defer(function() {
@@ -145,7 +145,7 @@ function chatController($scope, $defer) {
 chatController.$inject = ['$scope', '$defer'];
 
 var putvideo = function(id) {
-              $('<iframe width="560" height="315" src="http://www.youtube.com/embed/' + id + '" frameborder="0" allowfullscreen></iframe>').appendTo('#embedvideo');
+              $('<iframe width="100%" height="100%" src="http://www.youtube.com/embed/' + id + '" frameborder="0" allowfullscreen></iframe>').appendTo('#embedvideo');
        };
 
 var fetchVidInfo = function(vidid) {
@@ -184,4 +184,15 @@ $(document).ready(function() {
               putvideo = $.noop;
               fetchVidInfo(window.vid);
        }
+       $('#messagesDiv,#embedvideo').height($(window).height() - 300);
+       $("#messageInput").keypress(function(e) {
+              if(e.which == 13) {
+                     //submit form via ajax, this is not JS but server side scripting so not showing here
+                     // $("#chatbox").append($(this).val() + "<br/>");
+                     // $(this).val("");
+                     // e.preventDefault();
+                     $('form').submit();
+              }
+       });
+
 });

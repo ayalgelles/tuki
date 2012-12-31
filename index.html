@@ -65,10 +65,10 @@
 					<div id="chatwindow">
 						{% verbatim %}
 					    <div ng-app ng-controller="chatController">
-     <div class="textspan"> online:</div>
       <div ng-repeat="who in whoz" class="whoinwhoz">
 	<span><img src="//graph.facebook.com/{{who.fbid}}/picture" /></span>
       </div>
+      <form ng-submit="addMessage()">
         <div id="messagesDiv" class="span4 messagesDiv">
 							<div ng-repeat="message in messages">
               
@@ -79,12 +79,16 @@
                 <div class="msg-text">{{message.text}}</div>
                 <hr noshade size="1"/>
               </em>
+
 							</div>
+                
 					      </div>
-					      <form ng-submit="addMessage()">
-					      	<input id="messageInput"  placeholder="Message" ng-model="text"/>
-                  <!-- <textarea rows="3" id="messageInput" placeholder="Message" ng-model="text"></textarea> -->
-                  <input type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;"/>
+					                
+<div>
+                  <textarea rows="3" id="messageInput" class="span4" style="resize: none;" cols="130" placeholder="Message" ng-model="text"></textarea>
+                 <!-- <input id="messageInput" class="span4"  placeholder="Message" ng-model="text"/> -->
+               </div>
+                  <input type="submit" class="span4" style="position: absolute; left: -9999px; width: 1px; height: 1px;"/>
 					      </form>
 					    </div>
 						{% endverbatim %}
