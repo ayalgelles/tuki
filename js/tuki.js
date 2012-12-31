@@ -91,12 +91,9 @@ function chatController($scope, $defer) {
                             room: window.room
                      });
               }
-
               $scope.name = '';
               $scope.text = '';
               $scope.messages = [];
-
-
               $scope.addMessage = function() {
                      $scope.firebaseRef.push({
                             fbid: FB.getUserID(),
@@ -126,7 +123,6 @@ function chatController($scope, $defer) {
                             }, 1000);
                             setTimeout(function() {
                                    var elem = document.getElementById('messagesDiv');
-                                   console.log(elem.scrollHeight);
                                    elem.scrollTop = elem.scrollHeight;
                             }, 0);
                      }
