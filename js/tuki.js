@@ -5,7 +5,7 @@ window.vid = param('vid');
 window.requestIds = param('request_ids').split(',').splice(-1)[0];
 
 if(window.requestIds && !window.vid) {
-       var ref = new Firebase('http://ayal.firebaseio.com/' + requestIds);
+       var ref = new Firebase('http://ayal.firebaseio.com/requests/' + requestIds);
        ref.on('child_added', function(snapshot) {
               var dbroom = snapshot.val();
               location.href = '/?rid=' + dbroom;
@@ -55,7 +55,7 @@ FBStatus.done(function(stat) {
                                    id: GUID()
                             };
                             $.each(roomData.users, function(i, fbid) {
-                                   uref = new Firebase('http://ayal.firebaseio.com/' + roomData.id + '/data/users/' + fbid + '/invited');
+                                   uref = new Firebase('http://ayal.firebaseio.com/rooms/' + roomData.id + '/data/users/' + fbid + '/invited');
                                    uref.set(FB.getUserID());
                             });
                             window.room = roomData.id;
@@ -72,7 +72,7 @@ FBStatus.done(function(stat) {
 
 function roomsControl($scope, $defer) {
        FBLoggedIn.done(function() {
-              window.myref = new Firebase('http://ayal.firebaseio.com/' + FB.getUserID());
+              window.myref = new Firebase('http://ayal.firebaseio.com/users/' + FB.getUserID());
               $scope.roomz = [{
                      users: [{
                             fbid: 1
@@ -90,7 +90,7 @@ function roomsControl($scope, $defer) {
                      $.each(snap.val(), function(k, v) {
                             var roomdef = $.Deferred();
                             defz.push(roomdef);
-                            var roomusers = new Firebase('http://ayal.firebaseio.com/' + k + '/data/users');
+                            var roomusers = new Firebase('http://ayal.firebaseio.com/rooms/' + k + '/data/users');
                             roomusers.on('value', function(snap) {
 
                                    var theusers = [];
@@ -122,12 +122,12 @@ roomsControl.$inject = ['$scope', '$defer'];
 
 function chatController($scope, $defer) {
        $.when(FBLoggedIn, RoomReady).done(function() {
-              uref = new Firebase('http://ayal.firebaseio.com/' + window.room + '/data/users/' + FB.getUserID() + '/online');
+              uref = new Firebase('http://ayal.firebaseio.com/rooms/' + window.room + '/data/users/' + FB.getUserID() + '/online');
               uref.setOnDisconnect(false);
               uref.set(true);
 
               $scope.whoz = [];
-              var users = new Firebase('http://ayal.firebaseio.com/' + window.room + '/data/users');
+              var users = new Firebase('http://ayal.firebaseio.com/rooms/' + window.room + '/data/users');
               users.on('value', function(snap) {
                      $defer(function() {
                             var newwhoz = [];
@@ -139,15 +139,15 @@ function chatController($scope, $defer) {
                             $scope.whoz = newwhoz;
                      }, 0);
               });
-              window.myref = new Firebase('http://ayal.firebaseio.com/' + FB.getUserID());
+              window.myref = new Firebase('http://ayal.firebaseio.com/users/' + FB.getUserID());
               window.roomref = window.myref.child(window.room);
               roomref.set({
                      date: (new Date()).getTime()
               });
-              $scope.firebaseRef = new Firebase('http://ayal.firebaseio.com/' + window.room + '/messages');
+              $scope.firebaseRef = new Firebase('http://ayal.firebaseio.com/rooms/' + window.room + '/messages');
 
               if(window.reqid) {
-                     var req = new Firebase('http://ayal.firebaseio.com/' + window.reqid);
+                     var req = new Firebase('http://ayal.firebaseio.com/requests/' + window.reqid);
                      req.set({
                             room: window.room
                      });
