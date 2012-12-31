@@ -30,43 +30,43 @@ FBStatus.done(function(stat) {
               });
        }
 
-       FBLoggedIn.done(function(resp) {
-              if(window.room) {
-                     return;
-              }
-              $('.modal').modal('hide');
-              $('.roomodal').modal({
-                     backdrop: true
-              }).show();
+    FBLoggedIn.done(function(resp) {
+	$('.modal').modal('hide');
+        if(window.room) {
+            return;
+        }
+        $('.roomodal').modal({
+            backdrop: true
+        }).show();
 
-              $('.roomsbtn').click(function() {
-                     $('.roomodal modal-body').html();
-                     $('.roomodal modal-body');
-              });
+        $('.roomsbtn').click(function() {
+            $('.roomodal modal-body').html();
+            $('.roomodal modal-body');
+        });
 
-              $('.newbtn').click(function() {
-                     FB.ui({
-                            method: 'apprequests',
-                            message: 'wants to watch a video with you on Tuki'
-                     }, function(res) {
-                            console.log('res', res);
-                            window.roomData = {
-                                   users: $.merge([FB.getUserID()], res.to),
-                                   id: GUID()
-                            };
-                            $.each(roomData.users, function(i, fbid) {
-                                   uref = new Firebase('http://ayal.firebaseio.com/rooms/' + roomData.id + '/data/users/' + fbid + '/invited');
-                                   uref.set(FB.getUserID());
-                            });
-                            window.room = roomData.id;
+        $('.newbtn').click(function() {
+            FB.ui({
+                method: 'apprequests',
+                message: 'wants to watch a video with you on Tuki'
+            }, function(res) {
+                console.log('res', res);
+                window.roomData = {
+                    users: $.merge([FB.getUserID()], res.to),
+                    id: GUID()
+                };
+                $.each(roomData.users, function(i, fbid) {
+                    uref = new Firebase('http://ayal.firebaseio.com/rooms/' + roomData.id + '/data/users/' + fbid + '/invited');
+                    uref.set(FB.getUserID());
+                });
+                window.room = roomData.id;
 
-                            window.reqid = res.request;
-                            console.log('room is', window.room);
-                            RoomReady.resolve();
-                            $('.modal').modal('hide');
-                     });
-              });
-       });
+                window.reqid = res.request;
+                console.log('room is', window.room);
+                RoomReady.resolve();
+                $('.modal').modal('hide');
+            });
+        });
+    });
 
 });
 
